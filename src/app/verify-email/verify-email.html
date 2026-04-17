@@ -1,0 +1,77 @@
+<div class="verify-wrapper">
+  <div class="verify-container">
+    <div class="verify-card">
+      <!-- Header Section -->
+      <div class="verify-header">
+        <div class="logo-badge">📧</div>
+        <h1 class="verify-title">Verify Your Email</h1>
+        <p class="verify-subtitle">We've sent a verification code to {{ email }}</p>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+
+        <form [formGroup]="verifyForm" (ngSubmit)="onVerify()" class="verify-form">
+          <!-- Code Input -->
+          <div class="form-group">
+            <label for="code">VERIFICATION CODE</label>
+            <input
+              type="text"
+              id="code"
+              formControlName="code"
+              placeholder="000000"
+              maxlength="6"
+              class="code-input"
+              [class.error]="isFieldInvalid('code')"
+              inputmode="numeric"
+            />
+            <span *ngIf="isFieldInvalid('code')" class="field-error">
+              Please enter a valid 6-digit code
+            </span>
+          </div>
+
+          <!-- Info Text -->
+          <p class="info-text">
+            Enter the 6-digit code we sent to your email address. It may take a few moments to arrive.
+          </p>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="verify-btn"
+            [disabled]="verifyForm.invalid || isLoading"
+          >
+            {{ isLoading ? 'Verifying...' : 'Verify Email' }}
+          </button>
+        </form>
+
+        <!-- Resend Code -->
+        <div class="resend-section">
+          <p>Didn't receive the code?</p>
+          <button 
+            type="button"
+            class="resend-btn"
+            (click)="onResendCode()"
+            [disabled]="isResending || resendCountdown > 0"
+          >
+            {{ resendCountdown > 0 ? 'Resend in ' + resendCountdown + 's' : (isResending ? 'Sending...' : 'Resend Code') }}
+          </button>
+        </div>
+
+        <!-- Back to Login -->
+        <div class="back-link">
+          <a href="/login">Back to Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="register-wrapper">
+  <div class="register-container">
+    <div class="register-card">
+      <!-- Header Section -->
+      <div class="register-header">
+        <h2 class="brand-name">Timely</h2>
+        <p class="brand-subtitle">Precision scheduling for the modern professional.</p>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h1 class="form-title">Join Timely</h1>
+        <p class="form-description">Enter your details to create your secure account.</p>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-form">
+          <!-- Name Field -->
+          <div class="form-group">
+            <label for="name">FIRST NAME</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="John"
+              [class.error]="isFieldInvalid('name')"
+            />
+            <span *ngIf="isFieldInvalid('name')" class="field-error">
+              First name is required
+            </span>
+          </div>
+
+          <!-- Surname Field -->
+          <div class="form-group">
+            <label for="surname">LAST NAME</label>
+            <input
+              type="text"
+              id="surname"
+              formControlName="surname"
+              placeholder="Doe"
+              [class.error]="isFieldInvalid('surname')"
+            />
+            <span *ngIf="isFieldInvalid('surname')" class="field-error">
+              Last name is required
+            </span>
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-group">
+            <label for="email">EMAIL ADDRESS</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              placeholder="john@example.com"
+              [class.error]="isFieldInvalid('email')"
+            />
+            <span *ngIf="isFieldInvalid('email')" class="field-error">
+              Please enter a valid email
+            </span>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group">
+            <label for="password">PASSWORD</label>
+            <div class="password-input-wrapper">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                id="password"
+                formControlName="password"
+                placeholder="••••••••"
+                [class.error]="isFieldInvalid('password')"
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                (click)="togglePassword()"
+                tabindex="-1"
+              >
+                <span *ngIf="!showPassword">👁️</span>
+                <span *ngIf="showPassword">👁️‍🗨️</span>
+              </button>
+            </div>
+            <span *ngIf="isFieldInvalid('password')" class="field-error">
+              Password must be at least 6 characters
+            </span>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div class="form-group">
+            <label for="confirmPassword">CONFIRM PASSWORD</label>
+            <div class="password-input-wrapper">
+              <input
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                placeholder="••••••••"
+                [class.error]="isFieldInvalid('confirmPassword') || isPasswordMismatch()"
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                (click)="toggleConfirmPassword()"
+                tabindex="-1"
+              >
+                <span *ngIf="!showConfirmPassword">👁️</span>
+                <span *ngIf="showConfirmPassword">👁️‍🗨️</span>
+              </button>
+            </div>
+            <span *ngIf="isPasswordMismatch()" class="field-error">
+              Passwords do not match
+            </span>
+          </div>
+
+          <!-- Terms & Conditions -->
+          <label class="terms-checkbox">
+            <input type="checkbox" formControlName="agreeTerms" />
+            <span>I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a></span>
+          </label>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="create-account-btn"
+            [disabled]="registerForm.invalid || isLoading"
+          >
+            {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+          </button>
+        </form>
+
+        <!-- Sign In Link -->
+        <div class="signin-link">
+          <p>Already have an account? <a href="/login">Sign in</a></p>
+        </div>
+      </div>
+
+      <!-- Trust Signals -->
+      <div class="trust-signals">
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <span class="trust-text">SECURE</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🔐</span>
+          <span class="trust-text">ENCRYPTED</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✓</span>
+          <span class="trust-text">VERIFIED</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,107 @@
-<p>login works!</p>
+<div class="login-wrapper">
+  <header class="navbar">
+    <div class="navbar-left">
+      <h2 class="logo">Timely</h2>
+    </div>
+    <div class="navbar-right">
+      <a href="#" class="nav-link">Login</a>
+      <a href="#" class="nav-link">Help</a>
+    </div>
+  </header>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Welcome back</h1>
+        <p>Please enter your details to access your schedule.</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+        <!-- Error message -->
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <div class="form-group">
+          <label for="email">EMAIL ADDRESS</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="name@company.com"
+            [class.error]="isFieldInvalid('email')"
+          />
+          <span *ngIf="isFieldInvalid('email')" class="field-error">
+            Please enter a valid email
+          </span>
+        </div>
+
+        <div class="form-group">
+          <div class="password-label">
+            <label for="password">PASSWORD</label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+          <div class="password-input-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              formControlName="password"
+              placeholder="••••••••"
+              [class.error]="isFieldInvalid('password')"
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              (click)="togglePassword()"
+              tabindex="-1"
+            >
+              <span *ngIf="!showPassword">👁️</span>
+              <span *ngIf="showPassword">👁️‍🗨️</span>
+            </button>
+          </div>
+          <span *ngIf="isFieldInvalid('password')" class="field-error">
+            Password is required
+          </span>
+        </div>
+
+        <label class="remember-me">
+          <input type="checkbox" formControlName="rememberMe" />
+          Keep me signed in for 30 days
+        </label>
+
+        <button type="submit" class="login-btn" [disabled]="loginForm.invalid || isLoading">
+          {{ isLoading ? 'Signing in...' : 'Sign In' }}
+        </button>
+      </form>
+
+      <div class="or-divider">
+        <span>OR CONTINUE WITH</span>
+      </div>
+
+      <div class="social-buttons">
+        <button type="button" class="social-btn google-btn" [disabled]="isLoading">
+          <span class="social-icon">🔍</span> Google
+        </button>
+        <button type="button" class="social-btn apple-btn" [disabled]="isLoading">
+          <span class="social-icon">🍎</span> Apple
+        </button>
+      </div>
+
+      <div class="signup-link">
+        <p>New to Timely? <a href="/register" class="signup">Create an account</a></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span class="copyright">© 2024 Timely Architectural Scheduling</span>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,3 +1,13 @@
 import { Routes } from '@angular/router';
+import { Login } from './login/login';
+import { Register } from './register/register';
+import { VerifyEmail } from './verify-email/verify-email';
+import { Dashboard } from './dashboard/dashboard';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  { path: 'verify-email', component: VerifyEmail },
+  { path: 'dashboard', component: Dashboard },
+];
