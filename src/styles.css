@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0054cc;
+  --color-primary-container: #006bff;
+  --color-on-primary: #ffffff;
+
+  --color-surface: #f8f9fa;
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #424655;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+
+  --color-secondary: #525f73;
+  --color-secondary-container: #d6e3fb;
+  --color-on-secondary: #ffffff;
+
+  --color-tertiary: #a53800;
+  --color-tertiary-container: #ce4800;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #fffdff;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  --color-outline: #727787;
+  --color-outline-variant: #c2c6d8;
+
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+}
+.icon-18 {
+  font-size: 18px;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-headline);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

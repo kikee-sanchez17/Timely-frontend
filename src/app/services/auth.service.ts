@@ -84,9 +84,11 @@ export class AuthService {
     return this.http.post<void>(`${this.apiUrl}/verify`, data);
   }
 
-  resendVerificationCode(data: ResendCodeRequest): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`${this.apiUrl}/resend`, data);
-  }
+  resendVerificationCode(data: ResendCodeRequest): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/resend`, data, { 
+        responseType: 'text' as 'json' 
+    });
+}
 
   logout(): void {
     if (this.isBrowser) {

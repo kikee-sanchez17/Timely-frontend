@@ -105,6 +105,7 @@ export class VerifyEmail implements OnInit {
   }
 
   onResendCode(): void {
+    console.log("email for resend:", this.email);
     this.isResending = true;
     this.errorMessage = '';
 
@@ -112,6 +113,7 @@ export class VerifyEmail implements OnInit {
       next: () => {
         this.isResending = false;
         this.successMessage = 'Verification code sent to your email!';
+        console.log(this.successMessage);
         this.startResendCountdown();
         setTimeout(() => {
           this.successMessage = '';
